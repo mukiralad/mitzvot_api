@@ -47,6 +47,7 @@ The server will start on port 3000.
     },
     ...
 ]
+```
 
 #### Search Mitzvotby Description
 
@@ -65,6 +66,7 @@ The server will start on port 3000.
     },
     ...
 ]
+```
 
 #### Search Mitzvot by Source
 
@@ -83,4 +85,5 @@ The server will start on port 3000.
     },
     ...
 ]
+```
 
