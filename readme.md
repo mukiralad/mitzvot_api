@@ -47,3 +47,40 @@ The server will start on port 3000.
     },
     ...
 ]
+
+#### Search Mitzvotby Description
+
+- **URL:** `/api/mitzvot/search`
+- **Method:** `GET`
+- ** Query parameters:** q (required): The query string to search in the description.
+- **Description:** Searches for mitzvot by description..
+
+#### Response
+```json
+[
+    {
+        "number": 1,
+        "description": "To know there is a God.",
+        "source": "Exodus 20:2"
+    },
+    ...
+]
+
+#### Search Mitzvot by Source
+
+- **URL:** `/api/mitzvot/source`
+- **Method:** `GET`
+- ** Query parameters:** source (required): The query string to search in the source.
+- **Description:** Searches for mitzvot by source.
+
+#### Response
+```json
+[
+    {
+        "number": 1,
+        "description": "To know there is a God.",
+        "source": "Exodus 20:2"
+    },
+    ...
+]
+
