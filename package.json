@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "A simple API to access and search the 613 mitzvot.",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   }
 }
