@@ -31,6 +31,11 @@ app.get('/api/mitzvot/source', (req, res) => {
     res.json(results);
 });
 
+app.get('/api/mitzvot/random', (req, res)=>{
+    const randomIndex = Math.floor(Math.random() * mitzvot.length);
+    res.json(mitzvot[randomIndex]);
+})
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
