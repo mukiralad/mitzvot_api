@@ -1,10 +1,9 @@
 const express = require('express');
-const { GoogleGenerativeAI } = require("@google/generative-ai");
 const cors = require('cors'); // Import the cors package
 const app = express();
 const port = process.env.PORT || 3000;
 
-
+const { getRandomSection } = require('./util/tanakhUtilFunction');
 
 app.use(cors()); // Enable CORS
 
@@ -24,19 +23,9 @@ app.get('/api/mitzvot/search', (req, res) => {
     res.json(results);
 });
 
-app.get('/api/mitzvot/reccomendations', async(req, res) =>{
-    if (req.query.prompt){
-        const prompt = req.query.prompt
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-        const result = await model.generateContent(prompt);
-            res.json({
-            message: result
-        })       
-    }
-})
-
+app.get('/api/tanakh/random', (req, res) => {
+    res.json(getRandomSection());
+});
 
 app.get('/api/mitzvot/source', (req, res) => {
     const sourceQuery = req.query.source;
