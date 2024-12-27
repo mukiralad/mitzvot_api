@@ -86,3 +86,17 @@ The server will start on port 3000.
     ...
 ]
 ```
+
+#### Random part from the Tanakh
+
+- **URL:** `/api/tanakh/random`
+- **Method:** `GET`
+- **Description:** Provides a random section from the Tanakh, alongisde the book it comes from.
+
+#### Response
+```json
+    {
+      "book": "Lamentations",
+      "line": "חשב יהוה להשחית חומת בת ציון נטה קו לא השיב ידו מבלע ויאבל חל וחומה יחדו אמללו"
+    }
+```
