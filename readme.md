@@ -1,6 +1,6 @@
 # Mitzvot API
 
-This is a simple API to access and search the 613 mitzvot.
+This is a simple API to access and search the 613 mitzvot, sections of the Tanakh, and to provide API usage for Jewish/religious/historical projects (or anything else.. non-nefarious!).
 
 ## Getting Started
 
