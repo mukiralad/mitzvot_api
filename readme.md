@@ -100,3 +100,17 @@ The server will start on port 3000.
       "line": "חשב יהוה להשחית חומת בת ציון נטה קו לא השיב ידו מבלע ויאבל חל וחומה יחדו אמללו"
     }
 ```
+#### Random part from the Tanakh (ENGLISH)
+
+- **URL:** `/api/tanakh/random/english`
+- **Method:** `GET`
+- **Description:** Provides a random section from the Tanakh, alongisde the book it comes from, this time with English included.
+
+#### Response
+```json
+    {
+        "book": "Judges",
+        "line": "והיה בבקר כזרח השמש תשכים ופשטת על העיר והנה הוא והעם אשר אתו יצאים אליך ועשית לו כאשר תמצא ידך",
+        "english": "And there was the east cattle the sun and simplified on the city and here he and the people with whom he will come to you and you did to him when you find your hand"
+    }
+```
