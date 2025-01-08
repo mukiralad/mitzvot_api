@@ -2,6 +2,8 @@
 
 This is a simple API to access and search the 613 mitzvot, sections of the Tanakh, and to provide API usage for Jewish/religious/historical projects (or anything else.. non-nefarious!).
 
+Accessible at: https://web-production-aae7.up.railway.app/
+
 ## Getting Started
 
 ### Prerequisites
