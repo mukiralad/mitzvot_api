@@ -49,7 +49,7 @@ The server will start on port 3000.
 ]
 ```
 
-#### Search Mitzvotby Description
+#### Search Mitzvot by Description
 
 - **URL:** `/api/mitzvot/search`
 - **Method:** `GET`
