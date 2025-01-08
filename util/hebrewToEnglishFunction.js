@@ -1,16 +1,13 @@
-import translate from "translate";
+const translate = require('translate-google');
 translate.engine = "google";
 
-// From = he, to = en (example)
-const toEnglish = async(ivrit) => {
-    if (ivrit){
-        const text = await translate(ivrit, { from: he, to: en });
-        return text
+const toEnglish = async (ivrit) => {
+    if (ivrit) {
+        return await translate(ivrit, { from: 'iw', to: 'en' });
     }
-    return "error"
-}
-
+    return null;
+};
 
 module.exports = {
     toEnglish
-  };
+};

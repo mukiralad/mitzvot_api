@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors'); // Import the cors package
 const app = express();
 const port = process.env.PORT || 3000;
+const {toEnglish} = require('./util/hebrewToEnglishFunction');
 
 const { getRandomSection } = require('./util/tanakhUtilFunction');
 
@@ -25,6 +26,17 @@ app.get('/api/mitzvot/search', (req, res) => {
 
 app.get('/api/tanakh/random', (req, res) => {
     res.json(getRandomSection());
+});
+
+app.get('/api/tanakh/random/english', (req, res) => {
+    const section = getRandomSection();
+    toEnglish(section.line).then(english => {
+        res.json({
+            book: section.book,
+            line: section.line,
+            english
+        });
+    });
 });
 
 app.get('/api/mitzvot/source', (req, res) => {
