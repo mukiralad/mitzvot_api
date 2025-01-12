@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors'); // Import the cors package
 const app = express();
 const port = process.env.PORT || 3000;
+
 const {toEnglish} = require('./util/hebrewToEnglishFunction');
+const { mitzvahSummary } = require('./aiFunction');
 
 const { getRandomSection } = require('./util/tanakhUtilFunction');
 
@@ -53,6 +55,20 @@ app.get('/api/mitzvot/random', (req, res)=>{
     const randomIndex = Math.floor(Math.random() * mitzvot.length);
     res.json(mitzvot[randomIndex]);
 })
+
+// parsing JSON bodies
+app.use(express.json());
+
+app.get('/api/mitzvot/ai', async (req, res) => {
+    // Requires JSON request body data to be present in form of { "prompt": "..." }
+    const { prompt } = req.body;
+    if (!prompt) {
+        return res.status(400).send({ error: 'Body parameter "prompt" is required' });
+    }
+    const response = await mitzvahSummary(prompt);
+    console.log(response);
+    res.send(response);
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
