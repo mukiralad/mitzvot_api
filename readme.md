@@ -116,3 +116,24 @@ The server will start on port 3000.
         "english": "And there was the east cattle the sun and simplified on the city and here he and the people with whom he will come to you and you did to him when you find your hand"
     }
 ```
+
+#### AI Mitzvot summary for the day.
+
+- **URL:** `/api/mitzvot/ai`
+- **Method:** `GET`
+- **Description:** Based on an explanation of the activities you have completed in a day, Google Gemini AI will act as a Rabbi and return the list of Mitzvot completed (if any), in a JSON format.
+
+#### Input
+```json
+    {
+        "prompt": "Said the Shema"
+    }
+```
+
+#### Response
+```json
+    {
+        "mitzvotForToday": ["Shema"],
+        "mitzvotCount": 1
+    }
+```

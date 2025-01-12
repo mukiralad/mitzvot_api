@@ -56,7 +56,8 @@ app.get('/api/mitzvot/random', (req, res)=>{
     res.json(mitzvot[randomIndex]);
 })
 
-app.use(express.json()); // Add this line to parse JSON bodies
+// parsing JSON bodies
+app.use(express.json());
 
 app.get('/api/mitzvot/ai', async (req, res) => {
     // Requires JSON request body data to be present in form of { "prompt": "..." }
