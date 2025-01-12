@@ -31,6 +31,8 @@ Accessible at: https://web-production-aae7.up.railway.app/
 
 The server will start on port 3000.
 
+# Documentation:
+
 ## API Endpoints
 
 ### Get All Mitzvot
