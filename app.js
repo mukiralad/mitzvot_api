@@ -2,8 +2,9 @@ const express = require('express');
 const cors = require('cors'); // Import the cors package
 const app = express();
 const port = process.env.PORT || 3000;
-const {toEnglish} = require('./util/hebrewToEnglishFunction');
 
+const {toEnglish} = require('./util/hebrewToEnglishFunction');
+const { load } = require('./aiFunction');
 const { getRandomSection } = require('./util/tanakhUtilFunction');
 
 app.use(cors()); // Enable CORS
@@ -53,6 +54,19 @@ app.get('/api/mitzvot/random', (req, res)=>{
     const randomIndex = Math.floor(Math.random() * mitzvot.length);
     res.json(mitzvot[randomIndex]);
 })
+
+app.use(express.json()); // Add this line to parse JSON bodies
+
+app.get('/api/ai', async (req, res) => {
+    // Getting prompt from request body.. This will be added onto the prompt in the load function (AiFunction.js), which is "Hi. Act as an official orthadox Rabbi, and only accept questions if they are surrounding the topic of Judaism. Here is my question: "
+    const { prompt } = req.body;
+    if (!prompt) {
+        return res.status(400).send({ error: 'Body parameter "prompt" is required' });
+    }
+    const response = await load(prompt);
+    console.log(response);
+    res.send(response);
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
