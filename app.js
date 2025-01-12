@@ -59,7 +59,7 @@ app.get('/api/mitzvot/random', (req, res)=>{
 // parsing JSON bodies
 app.use(express.json());
 
-app.get('/api/mitzvot/ai', async (req, res) => {
+app.post('/api/mitzvot/ai', async (req, res) => {
     // Requires JSON request body data to be present in form of { "prompt": "..." }
     const { prompt } = req.body;
     if (!prompt) {
