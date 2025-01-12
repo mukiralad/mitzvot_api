@@ -59,6 +59,7 @@ app.get('/api/mitzvot/random', (req, res)=>{
 app.use(express.json()); // Add this line to parse JSON bodies
 
 app.get('/api/mitzvot/ai', async (req, res) => {
+    // Requires JSON request body data to be present in form of { "prompt": "..." }
     const { prompt } = req.body;
     if (!prompt) {
         return res.status(400).send({ error: 'Body parameter "prompt" is required' });
