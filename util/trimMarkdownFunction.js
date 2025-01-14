@@ -5,6 +5,6 @@ function trimMarkdown(markdown){
     return data
 }
 
-export default {
+module.exports = {
     trimMarkdown
 };

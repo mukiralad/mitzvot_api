@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const {toEnglish} = require('./util/hebrewToEnglishFunction');
-const {trimMarkdown} = require('./util/trimMarkdownFunction').default;
+const {trimMarkdown} = require('./util/trimMarkdownFunction');
 const { mitzvahSummary, explainMitzvah } = require('./aiFunction');
 
 const { getRandomSection } = require('./util/tanakhUtilFunction');
