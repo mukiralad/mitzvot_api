@@ -22,24 +22,15 @@ const mitzvahSummary = async (prompt) => {
 const explainMitzvah = async (id) => {
 
     const mitzvah = mitzvot.find(m => m.number === id);
-    if (mitzvah) {
-        console.log(mitzvah);
-    } else {
-        console.log(`Mitzvah number ${id} not found.`);
-        return null;
-    }
-
     try {
-        const result = await model.generateContent(`Hi, your only job is to be an Orthadox official Rabbi, and to explain the mitzvah in more detail: ${mitzvah.description}`)
+        const result = await model.generateContent(`Hi, your only job is to be an Orthadox official Rabbi, and to explain the mitzvah in more detail (keep it concise and return it in as a JSON, with the format mitzvahName and explanation): ${mitzvah.description}`)
         const responseText = await result.response.text();
-        console.log(responseText);
         return responseText;
     } catch (error) {
         console.error("Error generating content:", error);
+        return { error: "Mitzvah not found. Remember, there are only 613 official Mitzvot!" };
     }
 };
-
-explainMitzvah(4);
 
 module.exports = {  
     mitzvahSummary,
