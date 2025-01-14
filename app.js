@@ -4,7 +4,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const {toEnglish} = require('./util/hebrewToEnglishFunction');
-const { mitzvahSummary } = require('./aiFunction');
+const {trimMarkdown} = require('./util/trimMarkdownFunction').default;
+const { mitzvahSummary, explainMitzvah } = require('./aiFunction');
 
 const { getRandomSection } = require('./util/tanakhUtilFunction');
 
@@ -69,6 +70,20 @@ app.post('/api/mitzvot/ai', async (req, res) => {
     console.log(response);
     res.send(response);
 });
+
+app.get('/api/mitzvot/ai/explain/:id', async (req, res)=>{
+    const id = Number(req.params.id);
+    if (id > 613 || id < 1) {
+        return res.status(404).send({ error: 'Mitzvah not found. Remember, there are only 613 official Mitzvot!' });
+    }
+    const response = await explainMitzvah(id);
+
+    if (response.error) {
+        return res.status(404).send(response);
+    }   
+    //trimMarkdown just takes a JSON string and returns the parsed JSON object
+    res.send(trimMarkdown(response));
+})
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
