@@ -139,3 +139,17 @@ The server will start on port 3000.
         "mitzvotCount": 1
     }
 ```
+
+### AI Mitzvot Explanation
+
+- **URL:** `/api/mitzvot/ai/explain/:id`
+- **Method:** `GET`
+- **Description:** Based on a Mitzvah ID, these can be found by searching the mitzvot in our API or by using the official order of Mitzvot found on Chabad.org, we return an AI explanation for the Mitzvah. An example call would be to the endpoint: /api/mitzvot/ai/explain/4 - this would return an explanation and mitzvah name for the fourth mitzvah in the list, responding with:
+
+#### Response:
+```json
+    {
+        "mitzvahName": "Ahavat Hashem (Love of God)",
+        "explanation": "Ahavat Hashem, the love of God, is the foundation of all mitzvot. It's not merely an emotion, but a commitment expressed through actions reflecting reverence, awe, obedience to His commandments (mitzvot), and striving to emulate His divine attributes – chesed (loving-kindness), tzedek (justice), and rachamim (compassion).  This love is cultivated through Torah study, prayer, and living a righteous life according to Halakha (Jewish law).  It's a constant, evolving relationship, characterized by both intellectual understanding and deep emotional connection, ultimately leading to a life of meaning and purpose dedicated to serving God and humanity."
+    }
+```
