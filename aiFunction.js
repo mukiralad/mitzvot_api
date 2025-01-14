@@ -1,5 +1,8 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
+const mitzvot = require('./mitzvot.json');
+
+
 require('dotenv').config();
 
 const geminiKey = process.env.GEMINI_KEY;
@@ -16,6 +19,29 @@ const mitzvahSummary = async (prompt) => {
     }
 };
 
+const explainMitzvah = async (id) => {
+
+    const mitzvah = mitzvot.find(m => m.number === id);
+    if (mitzvah) {
+        console.log(mitzvah);
+    } else {
+        console.log(`Mitzvah number ${id} not found.`);
+        return null;
+    }
+
+    try {
+        const result = await model.generateContent(`Hi, your only job is to be an Orthadox official Rabbi, and to explain the mitzvah in more detail: ${mitzvah.description}`)
+        const responseText = await result.response.text();
+        console.log(responseText);
+        return responseText;
+    } catch (error) {
+        console.error("Error generating content:", error);
+    }
+};
+
+explainMitzvah(4);
+
 module.exports = {  
-    mitzvahSummary
+    mitzvahSummary,
+    explainMitzvah
 }
