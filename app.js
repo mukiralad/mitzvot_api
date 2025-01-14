@@ -30,7 +30,6 @@ app.get('/api/mitzvot/ai/search', async(req, res) => {
 });
 
 app.get('/api/mitzvot/search', async(req, res) => {
-    //Search for Mitzvah using list of Mitzvot without AI (unless no results are found, then use AI)
     const query = req.query.q;
     if (!query) {
         return res.status(400).send({ error: 'Query parameter "q" is required' });
@@ -38,10 +37,7 @@ app.get('/api/mitzvot/search', async(req, res) => {
 
     const results = mitzvot.filter(mitzvah => mitzvah.description.toLowerCase().includes(query.toLowerCase()));
     if (results.length === 0) {
-        // If no results are found, use AI to suggest Mitzvot
-        const results = await didYouMean(query);
-        console.log(trimMarkdown(results))
-        res.json(trimMarkdown(results));
+        return res.status(404).send({ error: 'No mitzvot found, try our AI search.' });
     }
     res.json(results);
 });
