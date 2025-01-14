@@ -53,7 +53,28 @@ The server will start on port 3000.
 ]
 ```
 
-### Search Mitzvot by Description
+### Search Mitzvah by Description using AI
+
+- **URL:** `/api/mitzvot/ai/search`
+- **Method:** `GET`
+- ** Query parameters:** q (required): The query string to search in the description.
+- **Description:** Searches for mitzvot by description using AI to figure out what is meant. Example response below, based on "/api/mitzvot/ai/search?q=food":
+
+#### Response:
+```json
+[
+    {
+        "description": "Preparing and eating a meal",
+        "potentialMitzvah": "Birkat Hamazon (Grace After Meals)"
+    },
+    {
+        "description": "Acquiring food",
+        "potentialMitzvah": "Avoiding theft or deception in food transactions; ensuring fair prices and honest dealings."
+    }...
+]
+```
+
+### Search Mitzvah by Description using Mitzvot list.
 
 - **URL:** `/api/mitzvot/search`
 - **Method:** `GET`
