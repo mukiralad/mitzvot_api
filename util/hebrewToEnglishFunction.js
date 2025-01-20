@@ -1,14 +1,15 @@
 const translate = require('translate-google');
 translate.engine = "google";
 
-const toEnglish = async (ivrit) => {
-    //Takes the hebrew text and translates it to english using the translate-google Module
-    if (ivrit) {
-        return await translate(ivrit, { from: 'iw', to: 'en' });
+
+const translateFunction = async (ivrit, from, to) =>{
+    //Takes the hebrew text (or any other language), converts it to chosen language ('en' for english) using the translate-google Module
+    if (from && to) {
+        return await translate(ivrit, { from: from, to: to });
     }
     return null;
-};
+}
 
 module.exports = {
-    toEnglish
+    translateFunction
 };

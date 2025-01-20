@@ -3,8 +3,8 @@ const cors = require('cors'); // Import the cors package
 const app = express();
 const port = process.env.PORT || 3000;
 
-const {toEnglish} = require('./util/hebrewToEnglishFunction');
-const {trimMarkdown} = require('./util/trimMarkdownFunction');
+const { translateFunction} = require('./util/hebrewToEnglishFunction');
+const { trimMarkdown } = require('./util/trimMarkdownFunction');
 const { mitzvahSummary, explainMitzvah, aiSearch} = require('./aiFunction');
 
 const { getRandomSection } = require('./util/tanakhUtilFunction');
@@ -48,7 +48,7 @@ app.get('/api/tanakh/random', (req, res) => {
 
 app.get('/api/tanakh/random/english', (req, res) => {
     const section = getRandomSection();
-    toEnglish(section.line).then(english => {
+    translateFunction(section.line, 'iw', 'ru').then(english => {
         res.json({
             book: section.book,
             line: section.line,
