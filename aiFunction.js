@@ -32,7 +32,7 @@ const explainMitzvah = async (id) => {
     }
 };
 
-const didYouMean = async (query)=>{
+const aiSearch = async (query)=>{
     try {
         const result = await model.generateContent(`Hi, your only job is to be an Orthadox official Rabbi and suggest any mitzvot that could be related to the following query (using ${mitzvot} as context. Also, return data in a JSON in the format description and potentialMitzvah): ${query}`)
         const responseText = await result.response.text();
@@ -45,5 +45,5 @@ const didYouMean = async (query)=>{
 module.exports = {  
     mitzvahSummary,
     explainMitzvah,
-    didYouMean
+    aiSearch
 }

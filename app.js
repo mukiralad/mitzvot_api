@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 
 const {toEnglish} = require('./util/hebrewToEnglishFunction');
 const {trimMarkdown} = require('./util/trimMarkdownFunction');
-const { mitzvahSummary, explainMitzvah, didYouMean} = require('./aiFunction');
+const { mitzvahSummary, explainMitzvah, aiSearch} = require('./aiFunction');
 
 const { getRandomSection } = require('./util/tanakhUtilFunction');
 
@@ -24,7 +24,7 @@ app.get('/api/mitzvot/ai/search', async(req, res) => {
         return res.status(400).send({ error: 'Query parameter "q" is required' });
     }
 
-    const results = await didYouMean(query);
+    const results = await aiSearch(query);
     console.log(trimMarkdown(results))
     res.json(trimMarkdown(results));
 });
