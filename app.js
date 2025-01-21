@@ -48,7 +48,7 @@ app.get('/api/tanakh/random', (req, res) => {
 
 app.get('/api/tanakh/random/english', (req, res) => {
     const section = getRandomSection();
-    translateFunction(section.line, 'iw', 'ru').then(english => {
+    translateFunction(section.line, 'iw', 'en').then(english => {
         res.json({
             book: section.book,
             line: section.line,
