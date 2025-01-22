@@ -35,7 +35,7 @@ FNDA:1,getRandomBook
 FNDA:1,getRandomChapter
 FNDA:1,getRandomLine
 FNDA:1,getRandomSection
-FNDA:12,(anonymous_5)
+FNDA:16,(anonymous_5)
 DA:1,1
 DA:4,1
 DA:8,3
@@ -50,7 +50,7 @@ DA:28,1
 DA:33,1
 DA:34,1
 DA:35,1
-DA:36,12
+DA:36,16
 DA:37,1
 DA:44,1
 LF:17

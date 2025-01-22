@@ -31,6 +31,12 @@ Accessible at: https://web-production-aae7.up.railway.app/
 
 The server will start on port 3000.
 
+### Testing
+
+Generate a unit test report:
+
+    npx jest
+
 # Documentation:
 
 ## API Endpoints
