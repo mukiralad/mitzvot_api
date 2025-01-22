@@ -37,6 +37,11 @@ Generate a unit test report:
 
     npx jest
 
+Resulting in a coverage report, looking like:
+
+<img width="633" alt="Screenshot 2025-01-22 at 14 00 01" src="https://github.com/user-attachments/assets/919accdf-918b-4c28-8366-5f59d9fed0a6" />
+
+
 # Documentation:
 
 ## API Endpoints
