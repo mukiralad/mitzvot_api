@@ -25,7 +25,7 @@ app.get('/api/mitzvot/ai/search', async(req, res) => {
     }
 
     const results = await aiSearch(query);
-    console.log(trimMarkdown(results))
+    // console.log(trimMarkdown(results))
     res.json(trimMarkdown(results));
 });
 
@@ -82,7 +82,7 @@ app.post('/api/mitzvot/ai', async (req, res) => {
         return res.status(400).send({ error: 'Body parameter "prompt" is required' });
     }
     const response = await mitzvahSummary(prompt);
-    console.log(response);
+    // console.log(response);
     res.send(response);
 });
 
