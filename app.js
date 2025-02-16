@@ -9,6 +9,30 @@ const { mitzvahSummary, explainMitzvah, aiSearch} = require('./aiFunction');
 
 const { getRandomSection } = require('./util/tanakhUtilFunction');
 
+// Rate limiting
+// General rate limiter: 100 requests per hour per user
+const generalLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 100, // limit each user to 100 requests per window
+    message: { error: 'Too many requests from this user, please try again later.' },
+    keyGenerator: (req) => {
+        return req.ip; // This is the default keyGenerator, but you could customize it
+    }
+});
+
+// AI rate limiter: 20 requests per hour per user
+const aiLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 20, // limit each user to 20 requests per window
+    message: { error: 'Too many AI requests from this user, please try again later.' },
+    keyGenerator: (req) => {
+        return req.ip; // This is the default keyGenerator, but you could customize it
+    }
+});
+
+// Apply general limiter to all routes by default
+app.use(generalLimiter);
+
 app.use(cors()); // Enable CORS
 
 const mitzvot = require('./mitzvot.json');
@@ -21,7 +45,7 @@ app.get('/api/mitzvot/all', (req, res) => {
     }
 });
 
-app.get('/api/mitzvot/ai/search', async(req, res) => {
+app.get('/api/mitzvot/ai/search', aiLimiter, async(req, res) => {
     //Search for Mitzvah using AI
     const query = req.query.q;
     if (!query) {
@@ -84,7 +108,7 @@ app.get('/api/mitzvot/random', (req, res)=>{
 // parsing JSON bodies
 app.use(express.json());
 
-app.post('/api/mitzvot/ai', async (req, res) => {
+app.post('/api/mitzvot/ai', aiLimiter, async (req, res) => {
     // Requires JSON request body data to be present in form of { "prompt": "..." }
     const { prompt } = req.body;
     if (!prompt) {
@@ -95,7 +119,7 @@ app.post('/api/mitzvot/ai', async (req, res) => {
     res.send(response);
 });
 
-app.get('/api/mitzvot/ai/explain/:id', async (req, res)=>{
+app.get('/api/mitzvot/ai/explain/:id', aiLimiter, async (req, res)=>{
     const id = Number(req.params.id);
     if (id > 613 || id < 1) {
         return res.status(404).send({ error: 'Mitzvah not found. Remember, there are only 613 official Mitzvot!' });
