@@ -14,7 +14,11 @@ app.use(cors()); // Enable CORS
 const mitzvot = require('./mitzvot.json');
 
 app.get('/api/mitzvot/all', (req, res) => {
-    res.json(mitzvot);
+    try{
+        res.json(mitzvot);
+    } catch (error){
+        res.send({error: 'Error getting all mitzvot'});
+    }
 });
 
 app.get('/api/mitzvot/ai/search', async(req, res) => {
@@ -43,7 +47,12 @@ app.get('/api/mitzvot/search', async(req, res) => {
 });
 
 app.get('/api/tanakh/random', (req, res) => {
-    res.json(getRandomSection());
+
+    try {
+        res.json(getRandomSection());
+    } catch (error) {
+        res.status(500).send({ error: 'Error getting random section' });
+    }
 });
 
 app.get('/api/tanakh/random/english', (req, res) => {
