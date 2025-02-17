@@ -14,11 +14,7 @@ app.use(cors()); // Enable CORS
 const mitzvot = require('./mitzvot.json');
 
 app.get('/api/mitzvot/all', (req, res) => {
-    try{
-        res.json(mitzvot);
-    } catch (error){
-        res.send({error: 'Error getting all mitzvot'});
-    }
+    res.json(mitzvot);
 });
 
 app.get('/api/mitzvot/ai/search', async(req, res) => {
@@ -47,12 +43,7 @@ app.get('/api/mitzvot/search', async(req, res) => {
 });
 
 app.get('/api/tanakh/random', (req, res) => {
-
-    try {
-        res.json(getRandomSection());
-    } catch (error) {
-        res.status(500).send({ error: 'Error getting random section' });
-    }
+    res.json(getRandomSection());
 });
 
 app.get('/api/tanakh/random/english', (req, res) => {
@@ -102,13 +93,12 @@ app.get('/api/mitzvot/ai/explain/:id', async (req, res)=>{
     }
     const response = await explainMitzvah(id);
 
-    if (response.error) {
-        return res.status(404).send(response);
-    }   
     //trimMarkdown just takes a JSON string and returns the parsed JSON object
     res.send(trimMarkdown(response));
 })
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+module.exports = server; // Export the server for testing
