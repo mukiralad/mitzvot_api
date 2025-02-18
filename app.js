@@ -8,6 +8,7 @@ const { trimMarkdown } = require('./util/trimMarkdownFunction');
 const { mitzvahSummary, explainMitzvah, aiSearch} = require('./aiFunction');
 
 const { getRandomSection } = require('./util/tanakhUtilFunction');
+const rateLimit = require('express-rate-limit');
 
 // Rate limiting
 // General rate limiter: 100 requests per hour per user
